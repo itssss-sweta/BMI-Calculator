@@ -1,15 +1,11 @@
 import 'package:flutter/material.dart';
 
-const labelTextStyle = TextStyle(
-  fontSize: 18,
-  color: Colors.white,
-);
-
 class IconRow extends StatelessWidget {
   final IconData icon1;
   final String label;
 
-  const IconRow({super.key, required this.icon1, required this.label});
+  const IconRow({Key? key, required this.icon1, required this.label})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +21,10 @@ class IconRow extends StatelessWidget {
         ),
         Text(
           label,
-          style: labelTextStyle,
+          style: const TextStyle(
+            fontSize: 18,
+            color: Colors.white,
+          ),
         ),
       ],
     );

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'constants.dart';
 
 class IconRow extends StatelessWidget {
   final IconData icon1;
@@ -21,10 +22,7 @@ class IconRow extends StatelessWidget {
         ),
         Text(
           label,
-          style: const TextStyle(
-            fontSize: 18,
-            color: Colors.white,
-          ),
+          style: kLabelTextStyle,
         ),
       ],
     );

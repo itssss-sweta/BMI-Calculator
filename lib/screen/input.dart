@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'container.dart';
+import '../components/container.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'icon.dart';
-import 'constants.dart';
+import '../components/icon.dart';
+import '../constants.dart';
+import '../components/buttombutton.dart';
+import '../components/floatingbutton.dart';
 
 class InputPage extends StatefulWidget {
   const InputPage({Key? key}) : super(key: key);
@@ -121,7 +123,7 @@ class _InputPageState extends State<InputPage> {
                       overlayShape: const RoundSliderOverlayShape(
                         overlayRadius: 30,
                       ),
-                      overlayColor: Color(0xeee15555),
+                      overlayColor: const Color(0xeee15555),
                     ),
                     child: Slider(
                       value: height.toDouble(),
@@ -150,7 +152,7 @@ class _InputPageState extends State<InputPage> {
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
+                        const Text(
                           'WEIGHT',
                           style: kLabelTextStyle,
                         ),
@@ -161,26 +163,21 @@ class _InputPageState extends State<InputPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                           children: [
-                            FloatingActionButton(
-                              onPressed: () {},
-                              backgroundColor: Color(0xff4c4f5e),
-                              child: Icon(
-                                Icons.minimize,
-                                size: 40,
-                                color: Colors.white,
-                              ),
+                            FloatingButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPress: () {
+                                setState(() {
+                                  weight--;
+                                });
+                              },
                             ),
-                            // SizedBox(
-                            //   width: 20,
-                            // ),
-                            FloatingActionButton(
-                              onPressed: () {},
-                              backgroundColor: Color(0xff4c4f5e),
-                              child: Icon(
-                                Icons.add,
-                                size: 40,
-                                color: Colors.white,
-                              ),
+                            FloatingButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPress: () {
+                                setState(() {
+                                  weight++;
+                                });
+                              },
                             ),
                           ],
                         ),
@@ -191,16 +188,50 @@ class _InputPageState extends State<InputPage> {
                 Expanded(
                   child: ReusableCard(
                     colour: kColorContainer,
+                    cardChild: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        const Text(
+                          'AGE',
+                          style: kLabelTextStyle,
+                        ),
+                        Text(
+                          age.toString(),
+                          style: kBoldTextStyle,
+                        ),
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            FloatingButton(
+                              icon: FontAwesomeIcons.minus,
+                              onPress: () {
+                                setState(() {
+                                  age--;
+                                });
+                              },
+                            ),
+                            FloatingButton(
+                              icon: FontAwesomeIcons.plus,
+                              onPress: () {
+                                setState(() {
+                                  age++;
+                                });
+                              },
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ],
             ),
           ),
-          Container(
-            width: double.infinity,
-            color: kBottomContainerColor,
-            height: kBottomContainerHeight,
-            margin: const EdgeInsets.only(top: 20),
+          ButtomButton(
+            buttonTitle: 'CALCULATE',
+            onTap: () {
+              Navigator.pushNamed(context, '/first');
+            },
           ),
         ],
       ),

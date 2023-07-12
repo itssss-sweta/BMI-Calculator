@@ -1,3 +1,4 @@
+import 'package:bmi_calculator/screen/results.dart';
 import 'package:flutter/material.dart';
 import '../components/container.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -5,6 +6,7 @@ import '../components/icon.dart';
 import '../constants.dart';
 import '../components/buttombutton.dart';
 import '../components/floatingbutton.dart';
+import 'calculator_brain.dart';
 
 class InputPage extends StatefulWidget {
   const InputPage({Key? key}) : super(key: key);
@@ -230,7 +232,18 @@ class _InputPageState extends State<InputPage> {
           ButtomButton(
             buttonTitle: 'CALCULATE',
             onTap: () {
-              Navigator.pushNamed(context, '/first');
+              CalculatorBrain calc =
+                  CalculatorBrain(height: height, weight: weight);
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => Results(
+                    resultBMI: calc.calculateBMI(),
+                    result: calc.getResult(),
+                    interpretation: calc.getInterpretation(),
+                  ),
+                ),
+              );
             },
           ),
         ],
